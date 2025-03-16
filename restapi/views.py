@@ -17,7 +17,8 @@ class RecipeListCreateAPIView(rest_framework.generics.ListCreateAPIView):
     serializer_class = RecipeSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        serializer = RecipeSerializer(data=request.data)
+        # serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             recipe = serializer.save()
             serializer = RecipeSerializer(recipe)
